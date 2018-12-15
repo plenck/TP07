@@ -47,9 +47,9 @@ void sierpinski(SDL_Surface *f, td7_pt P1, td7_pt P4, int n){
     P2.y = P1.y + (P4.y - P1.y)/4 - 1.75*(P4.x - P1.x)/4;
     P3.x = P4.x - (P4.x - P1.x)/4 + 1.75*(P4.y - P1.y)/4;
     P3.y = P4.y - (P4.y - P1.y)/4 - 1.75*(P4.x - P1.x)/4;
-    sierpinski(P2,P1,n-1,f);
-    sierpinski(P2,P3,n-1,f);
-    sierpinski(P4,P3,n-1,f);
+    sierpinski(f,P2,P1,n-1);
+    sierpinski(f,P2,P3,n-1);
+    sierpinski(f,P4,P3,n-1);
   }
 }
 /*
@@ -57,7 +57,6 @@ void sierpinski(SDL_Surface *f, td7_pt P1, td7_pt P4, int n){
 FONCTION : tapis
 ----------------------------------------------------------------------------
 DESCRIPTION : construit la fractable "tapis de Sierpinski" à l'aide de
-
 ----------------------------------------------------------------------------
 PARAMETERS :
   -int largeur;
@@ -68,9 +67,61 @@ PARAMETERS :
 RETURN : void
 ----------------------------------------------------------------------------
 */
-void tapis(SDL_Surface screen, int hauteur, int largeur){
-  SDL_FillRect(screen,NULL, SDL_MapRGB(32,255,255,255)); // Set background color
+void tapis(SDL_Surface *screen, int cote, int ordre){
+  SDL_FillRect(screen,NULL, SDL_MapRGB(screen->format,255,255,255)); // Set background color to white
+  td7_pt origin;
+  origin.x=0;
+  origin.y=0;
+  genTapis(screen,cote,ordre,origin,SDL_MapRGB(screen->format,0,0,0));
+}
+/*
+----------------------------------------------------------------------------
+FONCTION : genTapis
+----------------------------------------------------------------------------
+DESCRIPTION : genération des carrés par appel récurssif
+----------------------------------------------------------------------------
+PARAMETERS :
+  -SDL_Surface screen
+  -int ordre
+  -Uint32 color
+  -int cote
+----------------------------------------------------------------------------
+RETURN :void
+----------------------------------------------------------------------------
+*/
+void genTapis(SDL_Surface *screen, int cote, int n,td7_pt origin, Uint32 color){
+  if(n==0){
+    //do nothing
+    return;
+  }
+  else{
+    int a = cote/3;
 
+    Draw_FillRect(screen,origin.x+a,origin.y+a,a,a,color);
+
+    genTapis(screen,a,n-1, origin, color);
+    origin.x+=1*a;
+    origin.y+=0*a;
+    genTapis(screen,a,n-1, origin, color);
+    origin.x=2*a;
+    origin.y=0*a;
+    genTapis(screen,a,n-1, origin, color);
+    origin.x=0*a;
+    origin.y=1*a;
+    genTapis(screen,a,n-1, origin, color);
+    origin.x=2*a;
+    origin.y=1*a;
+    genTapis(screen,a,n-1, origin, color);
+    origin.x=0*a;
+    origin.y=2*a;
+    genTapis(screen,a,n-1, origin, color);
+    origin.x=1*a;
+    origin.y=2*a;
+    genTapis(screen,a,n-1, origin, color);
+    origin.x=2*a;
+    origin.y=2*a;
+    genTapis(screen,a,n-1, origin, color);
+  }
 }
 /*
 ----------------------------------------------------------------------------
@@ -87,7 +138,7 @@ PARAMETERS :
 RETURN :  SDL_Surface *screen
 ----------------------------------------------------------------------------
 */
-SDL_Surface *newFenetreGraphique(int x, int y){
+SDL_Surface *newFenetreGraphique(int x, int y, const char *title){
   if (SDL_Init(SDL_INIT_VIDEO)==-1){
     fprintf(stderr, "Erreur d'initialisation de la SDL : %s\n", SDL_GetError());
     exit(EXIT_FAILURE);
@@ -101,8 +152,7 @@ SDL_Surface *newFenetreGraphique(int x, int y){
     fprintf(stderr, "Erreur lors du chargement du mode video : %s\n", SDL_GetError());
     exit(EXIT_FAILURE);
   }
-  SDL_WM_SetCaption("TD07 QUI MARCHE BIEN, OU PAS.",NULL);
-  SDL_Flip();
+  SDL_WM_SetCaption(title,NULL);
   return screen;
 }
 
