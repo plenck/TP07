@@ -98,29 +98,31 @@ void genTapis(SDL_Surface *screen, int cote, int n,td7_pt origin, Uint32 color){
     int a = cote/3;
 
     Draw_FillRect(screen,origin.x+a,origin.y+a,a,a,color);
+    td7_pt offset;
+    offset = origin;
 
     genTapis(screen,a,n-1, origin, color);
-    origin.x+=1*a;
-    origin.y+=0*a;
-    genTapis(screen,a,n-1, origin, color);
-    origin.x=2*a;
-    origin.y=0*a;
-    genTapis(screen,a,n-1, origin, color);
-    origin.x=0*a;
-    origin.y=1*a;
-    genTapis(screen,a,n-1, origin, color);
-    origin.x=2*a;
-    origin.y=1*a;
-    genTapis(screen,a,n-1, origin, color);
-    origin.x=0*a;
-    origin.y=2*a;
-    genTapis(screen,a,n-1, origin, color);
-    origin.x=1*a;
-    origin.y=2*a;
-    genTapis(screen,a,n-1, origin, color);
-    origin.x=2*a;
-    origin.y=2*a;
-    genTapis(screen,a,n-1, origin, color);
+    offset.x = origin.x + 1*a;
+    offset.y = origin.y + 0*a;
+    genTapis(screen,a,n-1, offset, color);
+    offset.x = origin.x + 2*a;
+    offset.y = origin.y + 0*a;
+    genTapis(screen,a,n-1, offset, color);
+    offset.x = origin.x + 0*a;
+    offset.y = origin.y + 1*a;
+    genTapis(screen,a,n-1, offset, color);
+    offset.x = origin.x + 2*a;
+    offset.y = origin.y + 1*a;
+    genTapis(screen,a,n-1, offset, color);
+    offset.x = origin.x + 0*a;
+    offset.y = origin.y + 2*a;
+    genTapis(screen,a,n-1, offset, color);
+    offset.x = origin.x + 1*a;
+    offset.y = origin.y + 2*a;
+    genTapis(screen,a,n-1, offset, color);
+    offset.x = origin.x + 2*a;
+    offset.y = origin.y + 2*a;
+    genTapis(screen,a,n-1, offset, color);
   }
 }
 /*

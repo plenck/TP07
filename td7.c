@@ -13,7 +13,7 @@ int main(){
   P1.x=460;
   P1.y=1020;
   P4.x=1460;
-  P4.y=1020;
+  P4.y=1020 ;
 
   printf("\n===SIERPINSKI===\n");
   printf("entrez l'ordre n de sierpinski\n");
@@ -25,9 +25,11 @@ int main(){
   SDL_Flip(f1);
   printf("sdl actualisée\n");
   SDL_pause();
-
+  SDL_Quit();
   printf("\n===TAPIS DE SIERPINSKI===\n");
-  n=4;
+  printf("entrez l'ordre n du tapis de sierpinski\n");
+  scanf("%d", &n);
+  printf("ordre :  %d\n", n);
   f2 = newFenetreGraphique(1000,1000,"TAPIS DE SIERPINSKI");
   tapis(f2,1000,n);
   SDL_Flip(f2);
