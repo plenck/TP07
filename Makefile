@@ -13,7 +13,8 @@ OBJ = $(SRC:.c=.o)
 all : $(EXEC)
 
 td7: $(OBJ)
-	$(CC) -o $@ $^  $(LDFLAGS)
+	$(CC) -o bin/$@ $^  $(LDFLAGS)
+	make clean
 
 %.o: src/%.c
 	$(CC) -c $< $(CFLAGS)
