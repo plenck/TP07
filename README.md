@@ -10,4 +10,10 @@ https://www.libsdl.org/download-1.2.php
 
 http://sdl-draw.sourceforge.net/
 
+**Quelques Resultats :**
 
+Sierpiski à l'ordre 8 :
+![](images/sier.png)
+
+Le tapis de Sierpinski à l'ordre 6 :
+![](images/tapiss.png)
