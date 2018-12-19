@@ -1,6 +1,6 @@
 # TP07
 
-This repository contains source code of TP07 part of Phelma's scholarship
+This repository contains source code of TP07 parts of Phelma's scholarship
 https://tdinfo.phelma.grenoble-inp.fr/1AS1/td2.html
 
 
