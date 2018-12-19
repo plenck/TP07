@@ -4,7 +4,7 @@
 
 int main(){
 
-  SDL_Surface* f1=NULL;
+  SDL_Surface *f1=NULL;
   SDL_Surface *f2=NULL;
 
 

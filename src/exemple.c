@@ -1,5 +1,9 @@
-#include <SDL_phelma.h>
-int main (int ac, char **av) { unsigned int couleur ;
+#include <SDL/SDL.h>
+#include <SDL_draw.h>
+#include "td7.h"
+
+int main () {
+  unsigned int couleur ;
          /* Variable permettant de manipuler une fenetre */
   SDL_Surface* f1=NULL;
 
@@ -7,7 +11,7 @@ int main (int ac, char **av) { unsigned int couleur ;
        Creation d'une fenetre de dimension 300x200,
        Couleurs sur 32 bits, Fond de couleur blanche
        CRTL-C possible pour tuer le programme */
-  f1=newfenetregraphique(300,100) ;
+  f1=newFenetreGraphique(300, 100,"EXEMPLE") ;
 
          /* On verifie que la fenetre est ouverte ;
          sinon, arret du programme */
@@ -25,4 +29,6 @@ int main (int ac, char **av) { unsigned int couleur ;
 	/* un getchar pour attendre, sinon le programme se termine
      		et la fenetre disparait */
   puts("Taper une touche pour continuer") ; getchar() ;
+  SDL_Quit();
+  return EXIT_SUCCESS;
 }
